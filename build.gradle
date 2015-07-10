@@ -11,12 +11,30 @@ jar {
 }
 
 repositories {
+    mavenRepo urls: ["http://maven.lujs.cn/nexus/content/groups/public/"]
     mavenCentral()
 }
 
 dependencies {
-    compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
-    testCompile group: 'junit', name: 'junit', version: '4.+'
+
+    def gson = ["com.google.code.gson:gson:1.7.1"]
+    
+    def jackson_version = "2.5.2"  
+    def jackson = [
+            "com.fasterxml.jackson.core:jackson-annotations:$jackson_version",
+            "com.fasterxml.jackson.core:jackson-core:$jackson_version",
+            "com.fasterxml.jackson.core:jackson-databind:$jackson_version"]
+    def apacheCommon = [
+            "commons-collections:commons-collections:3.2"
+        ]
+    def jmail = ['javax.mail:mail:1.4.7']
+        
+    def unitils_version = "3.3.3"
+    def junit = ["junit:junit:4.8.2", "org.hamcrest:hamcrest-all:1.1","org.unitils:unitils-core:$unitils_version",
+            "org.powermock:powermock-api:1.4.12", "org.powermock:powermock-core:1.4.12", "org.powermock:powermock-module-junit4:1.4.12", "org.powermock:powermock-api-mockito:1.4.12",
+            ]
+    compile jmail, jackson, gson, apacheCommon
+    testCompile junit
 }
 
 test {
